@@ -629,9 +629,9 @@ cdef extern from "scip/scip.h":
     SCIP_Real SCIPgetLocalTransEstimate(SCIP* scip)
 
     # Solve Methods
-    SCIP_RETCODE SCIPsolve(SCIP* scip)
-    SCIP_RETCODE SCIPfreeTransform(SCIP* scip)
-    SCIP_RETCODE SCIPpresolve(SCIP* scip)
+    SCIP_RETCODE SCIPsolve(SCIP* scip) nogil
+    SCIP_RETCODE SCIPfreeTransform(SCIP* scip) nogil
+    SCIP_RETCODE SCIPpresolve(SCIP* scip) nogil
 
     # Node Methods
     SCIP_NODE* SCIPgetCurrentNode(SCIP* scip)

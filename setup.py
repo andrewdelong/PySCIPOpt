@@ -96,6 +96,6 @@ setup(
         'Topic :: Scientific/Engineering :: Mathematics'],
     ext_modules=extensions,
     packages=['pyscipopt'],
-    package_dir={'pyscipopt': packagedir},
+    package_dir={'': 'src'},
     package_data={'pyscipopt': ['scip.pyx', 'scip.pxd', '*.pxi']}
 )

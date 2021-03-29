@@ -1051,7 +1051,10 @@ cdef class Model:
 
     def freeTransform(self):
         """Frees all solution process data including presolving and transformed problem, only original problem is kept"""
-        PY_SCIP_CALL(SCIPfreeTransform(self._scip))
+        _scip = self._scip
+        with nogil:
+            rc = SCIPfreeTransform(_scip)
+        PY_SCIP_CALL(rc)
 
     def version(self):
         """Retrieve SCIP version"""
@@ -3012,12 +3015,18 @@ cdef class Model:
 
     def optimize(self):
         """Optimize the problem."""
-        PY_SCIP_CALL(SCIPsolve(self._scip))
+        _scip = self._scip
+        with nogil:
+            rc = SCIPsolve(_scip)
+        PY_SCIP_CALL(rc)
         self._bestSol = Solution.create(self._scip, SCIPgetBestSol(self._scip))
 
     def presolve(self):
         """Presolve the problem."""
-        PY_SCIP_CALL(SCIPpresolve(self._scip))
+        _scip = self._scip
+        with nogil:
+            rc = SCIPpresolve(_scip)
+        PY_SCIP_CALL(rc)
 
     # Benders' decomposition methods
     def initBendersDefault(self, subproblems):
