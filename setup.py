@@ -76,6 +76,8 @@ if use_cython:
 with open('README.md') as f:
     long_description = f.read()
 
+is_develop = 'develop' in sys.argv[:3]
+
 setup(
     name='PySCIPOpt',
     version=version,
@@ -96,6 +98,6 @@ setup(
         'Topic :: Scientific/Engineering :: Mathematics'],
     ext_modules=extensions,
     packages=['pyscipopt'],
-    package_dir={'': 'src'},
+    package_dir={'': 'src'} if is_develop else {'pyscipopt': packagedir},
     package_data={'pyscipopt': ['scip.pyx', 'scip.pxd', '*.pxi']}
 )
